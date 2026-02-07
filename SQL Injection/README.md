@@ -34,7 +34,7 @@ Saldırgan sonucu direk ekrande göremez sunucunun verdiği tepkilere göre çı
 	- **Time-Based Blind SQLi:**
 		-	Veritabanı tepki vermiyorsa zamana bağlı yükler ile sayfanın tepkisi gözlemlenir.
 
-> [SQL sorgusunda `WHERE` tümlecinde SQLi açığına örnek lab](Lab1)
+> [SQL sorgusunda `WHERE` tümlecinde SQLi açığına örnek lab]([Lab1](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Lab%201.md))
 
 
 		
