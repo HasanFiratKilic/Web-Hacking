@@ -4,7 +4,7 @@
 Laboratuvarı çözmek için, uygulamanın bir veya daha fazla yayınlanmamış ürünü görüntülemesine neden olan bir SQL enjeksiyon saldırısı gerçekleştirilmeli.
 
 Lab bizi aşağıdaki gibi bir site ile karşılıyor.
-![Lab1 ilk bakış]([lab1%20ilk%20bak%C4%B1%C5%9F](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab1%20ilk%20bak%C4%B1%C5%9F.png))
+![Lab1 ilk bakış]([lab1%20ilk%20bak%C4%B1%C5%9F]([https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab1%20ilk%20bak%C4%B1%C5%9F.png](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab1%20ilk%20bak%C4%B1%C5%9F.png?raw=true)))
 Sitenin kategorilerinde gezindiğimizde url şu şekilde oluyor.
 ![Lab1 url gözlem](Lab1%20url%20g%C3%B6zlem)
 Kırmızı karenin içerisindeki alan sorguya gönderilen kısımdır. Bu sorgunun SQL karşılığı şudur:
