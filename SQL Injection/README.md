@@ -36,6 +36,15 @@ Saldırgan sonucu direk ekrande göremez sunucunun verdiği tepkilere göre çı
 
 > [SQL sorgusunda `WHERE` tümlecinde SQLi açığına örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Lab%201.md)
 
+## SQLi ile kimlik doğrulama atlatma
+Bir sitede kimlik doğrulama gerçekleştirmek için kullanıcı adınızı ve şifrenizi girdiğinizde uygulama arkada şuna benzer bir sorgu çalıştırır:
+
+    SELECT * FROM users WHERE username = 'kullanıcı adı' AND password = 'parola' 
+Eğer veritabanında bu kullanıcı adı ve şifreyle uyuşan bir kayıt var ise giriş gerçekleştirilir. Sorgunun kullanıcı adı kısmından sonrasını yorum satırı haline getiribilirsek uygulamaya sadece kullanıcı adını girerek giriş yapabiliriz. Bunu da formda kullanıcı adının sonuna `' --` ekleyerek yaparız. Bu işelem sonrasında sorgu şu hale gelir:
+
+    SELECT * FROM users WHERE username = 'kullanıcı adı' -- ' AND password = ''
+Sorguda `--` işaretinden sonrası yorum satırı olacağından uygulma bu kısmı yürütmez ve sadece kullanıcı adını bilerek giriş gerçekleştirilir.
+[SQLi kimlik doğrulama atlatma örnek lab](lab2)
 
 		
 
