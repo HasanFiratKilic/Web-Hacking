@@ -9,6 +9,6 @@ Yukarda görüldüğü gibi kullanıcı adına `administrator'`, parolayada rasg
 Şimdiki adım kullanıcı adı kısmına `administrator' --` yükünü verip parolayı bilmeden administrator hesabına giriş yapmakta:
 ![Lab2 çözüm](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab2%20%C3%A7%C3%B6z%C3%BCm.png?raw=true)
 Yükü yolladıktan sonra giriş başarıyla gerçekleştirilmiştir.
-Labaratuarı aşağıdaki linkten kendiniz çözebilirsiniz:
+Labaratuarı aşağıdaki linkten kendiniz çözebilirsiniz:</br>
 https://portswigger.net/web-security/sql-injection/lab-login-bypass
 
