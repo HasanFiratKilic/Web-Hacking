@@ -34,7 +34,7 @@ Saldırgan sonucu direk ekrande göremez sunucunun verdiği tepkilere göre çı
 	- **Time-Based Blind SQLi:**
 		-	Veritabanı tepki vermiyorsa zamana bağlı yükler ile sayfanın tepkisi gözlemlenir.
 
-> [SQL sorgusunda `WHERE` tümlecinde SQLi açığına örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Lab%201.md)
+> [SQL sorgusunda `WHERE` tümlecinde SQLi açığına örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab1.md)
 
 ## SQLi ile kimlik doğrulama atlatma
 Bir sitede kimlik doğrulama gerçekleştirmek için kullanıcı adınızı ve şifrenizi girdiğinizde uygulama arkada şuna benzer bir sorgu çalıştırır:
@@ -44,7 +44,7 @@ Eğer veritabanında bu kullanıcı adı ve şifreyle uyuşan bir kayıt var ise
 
     SELECT * FROM users WHERE username = 'kullanıcı adı' -- ' AND password = ''
 Sorguda `--` işaretinden sonrası yorum satırı olacağından uygulma bu kısmı yürütmez ve sadece kullanıcı adını bilerek giriş gerçekleştirilir.
-[SQLi kimlik doğrulama atlatma örnek lab](lab2)
+> [SQLi kimlik doğrulama atlatma örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab2.md)
 
 		
 
