@@ -23,7 +23,7 @@ Veritabanındaki tüm ürünleri kategori , piyasaya salınmışmı fark etmeksi
 `' OR 1=1--` bu şekilde veri tabanındaki tüm veriler ekrana basılacak.
 ![çözüm](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab1%20%C3%A7%C3%B6z%C3%BCm.png?raw=true)
 
-Labaratuvarı aşağıdaki linkten kendiniz çözebilirsiniz:
+Labaratuvarı aşağıdaki linkten kendiniz çözebilirsiniz:</br>
 https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data
  
 
