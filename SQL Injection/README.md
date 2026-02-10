@@ -49,7 +49,7 @@ Sorguda `--` işaretinden sonrası yorum satırı olacağından uygulma bu kısm
 ## Diğer tablolardan veri alma
 Uygulama slq sorgusunun sonuçlarını yanıt olarak verdiği durumlarda, saldırgan bir SQLi açığı kullanarak uygulamanın diğer tablolarından `UNION` betiğini kullanarak ek sorgularla veri alabilir. 
 
-> [SQLi UNION saldırıları.](SQLi%20union%20type)
+> [SQLi UNION saldırıları.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/SQLi%20types/SQLi_UNION_attacks.md)
 
 		
 
