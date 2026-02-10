@@ -46,6 +46,11 @@ Eğer veritabanında bu kullanıcı adı ve şifreyle uyuşan bir kayıt var ise
 Sorguda `--` işaretinden sonrası yorum satırı olacağından uygulma bu kısmı yürütmez ve sadece kullanıcı adını bilerek giriş gerçekleştirilir.
 > [SQLi kimlik doğrulama atlatma örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab2.md)
 
+## Diğer tablolardan veri alma
+Uygulama slq sorgusunun sonuçlarını yanıt olarak verdiği durumlarda, saldırgan bir SQLi açığı kullanarak uygulamanın diğer tablolarından `UNION` betiğini kullanarak ek sorgularla veri alabilir. 
+
+> [SQLi UNION saldırıları.](SQLi%20union%20type)
+
 		
 
 
