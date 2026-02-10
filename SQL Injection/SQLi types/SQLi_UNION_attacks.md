@@ -25,5 +25,5 @@ Bir diğer yöntem farklı sayıda null değeri göndermek. Null geğerlerin say
 - `' UNION SELECT null,null--` : (Hata varsa: "2 den fazla sütun var")
 - `' UNION SELECT null,null,null--` :(Hata yok sayfa normal çalışıyor:"O zaman orjinal sorguda 3 sütun var.)
 
-> [Sütun sayısı tespiti örnek lab](Lab3)
+> [Sütun sayısı tespiti örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab3.md)
 
