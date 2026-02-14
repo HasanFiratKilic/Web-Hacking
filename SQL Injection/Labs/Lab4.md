@@ -10,7 +10,7 @@ Lab açılışta şu şekilde karşılıyor:
 Üçüncü adım olarak orjinal sorgunun kaç sütun döndürdüğüdür. Geçmişte gösterilen iki yöntemden biri ile bulabiliriz. Bu labda `ORDER BY` betiğini kullanarak belirliyeceğiz.
 Birinci sütundan başlayarak sütun index'ini artırarak sırayla ORDER BY ile sütünları sıralarsak dördüncü index'de hata verir buda bize orjinel sorguda üç sütun olduğunu gösterir.
 ![Lab4 sütun sayısı tespit](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab4%20sutun%20sayisi%20tespiti.png?raw=true)
-Dördüncü adım hangi sütunlar string değer kabul ediceğini bulmakta bunu SELECT `UNION null,null,null--` yükündeki null değerlerinin yerine sırayla `'a'` yükünu koyarak yapıyoruz eğerki string değeri koyduğumuz sütun sayfada hataya neden oluyorsa o sütun string kabul etmediğini gösterir. Hata vermez ve verdiğimiz yükü orjiinal yükün bir yerinde sayfada basılı görürsek o sütun string kabul ettiğini tespit etmiş oluruz.
+Dördüncü adım hangi sütunlar string değer kabul ediceğini bulmakta bunu SELECT `UNION null,null,null--` yükündeki null değerlerinin yerine sırayla `'wmznWI'` yükünu koyarak yapıyoruz eğerki string değeri koyduğumuz sütun sayfada hataya neden oluyorsa o sütun string kabul etmediğini gösterir. Hata vermez ve verdiğimiz yükü orjiinal yükün bir yerinde sayfada basılı görürsek o sütun string kabul ettiğini tespit etmiş oluruz.
 Uygulamaya birinci ve ikinci sütuna string değer yolladığımızda sayfada hata görünmekte ama ikinci sütuna gönderirsek sayfa çalışır ve yolladığımız yükü sayfada görürüz.
 ![Lab4 çözüm](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab4%20cozum.png?raw=true)
 
