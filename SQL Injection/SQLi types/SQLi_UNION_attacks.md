@@ -26,4 +26,15 @@ Bir diğer yöntem farklı sayıda null değeri göndermek. Null geğerlerin say
 - `' UNION SELECT null,null,null--` :(Hata yok sayfa normal çalışıyor:"O zaman orjinal sorguda 3 sütun var.)
 
 > [Sütun sayısı tespiti örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab3.md)
+## Faydalı veri türüne sahip sütunları bulma
+Genelde uygulamanın diğer tablolarından almak istediğimiz sütunlar string türünde olur. Bunu başarabilmemiz için orjine sorgunun hangi sütunlarının string değeri kabul ettiğini bulmamız gerekir.
+Örneğin öncesinde orjinel sorgusunda 4 sütun olduğunu tespit ettiğimiz web uygulamasının veritabanının hangi sütunlarının string değerler aldığını sırayla şu yükler ile  buluruz.
+
+    ' UNION SELECT 'a',null,null,null--
+    ' UNION SELECT null,'a',null,null--
+    ' UNION SELECT null,null,'a',null--
+    ' UNION SELECT null,null,null,'a'--
+Sütunun veri türü ile string( a ) uyuşmuyor ise uygulama hata verir. Eğer oluşmaz ve uygulama yanıtında enjekte edilen string( a ) değerini barındırıyorsa ilgili sütun string değerleri almakta uygundur.
+
+> [SQLi UNION saldırısı uygun sütun örnek lab](Lab4)
 
