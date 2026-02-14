@@ -36,5 +36,5 @@ Genelde uygulamanın diğer tablolarından almak istediğimiz sütunlar string t
     ' UNION SELECT null,null,null,'a'--
 Sütunun veri türü ile string( a ) uyuşmuyor ise uygulama hata verir. Eğer oluşmaz ve uygulama yanıtında enjekte edilen string( a ) değerini barındırıyorsa ilgili sütun string değerleri almakta uygundur.
 
-> [SQLi UNION saldırısı uygun sütun örnek lab](Lab4)
+> [SQLi UNION saldırısı uygun sütun bulma örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab4.md)
 
