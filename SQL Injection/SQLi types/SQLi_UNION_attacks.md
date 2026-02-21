@@ -38,3 +38,5 @@ Sütunun veri türü ile string( a ) uyuşmuyor ise uygulama hata verir. Eğer o
 
 > [SQLi UNION saldırısı uygun sütun bulma örnek lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab4.md)
 
+> [SQL enjeksiyon saldırılarında veritabanının incelenmesi](b%C4%B1la%20bl%C4%B1la)
+
