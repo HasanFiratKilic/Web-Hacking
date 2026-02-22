@@ -16,4 +16,4 @@ For example, you could use a `UNION` attack with the following input:
     ' UNION SELECT @@version--
 > [Oracle'da veritabanı türü ve sürümünü sorgulayan SQL enjeksiyon saldırısı.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab5.md)
 
-> [SQLi saldırısı, MySQL ve Microsoft veritabanlarında veritabanı türü ve sürümünü bulma lab.](Lab6)
+> [SQLi saldırısı, MySQL ve Microsoft veritabanlarında veritabanı türü ve sürümünü bulma lab.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab6.md)
