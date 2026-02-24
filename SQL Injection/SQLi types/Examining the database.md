@@ -44,4 +44,4 @@ Bu, aşağıdaki gibi bir çıktı döndürür:
 | MyDatabase    | dbo          | Users      | Password    | varchar   |
 Bu çıktı, belirtilen tablodaki sütunları ve her sütunun veri türünü gösterir.
 
-> [SQLi saldırısı, veritabanlarındaki veritabanı içeriklerini listeleme lab](Lab7)
+> [SQLi saldırısı, veritabanlarındaki veritabanı içeriklerini listeleme lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab7.md)
