@@ -27,6 +27,7 @@ Veritabanına göre sorgularda farklılıklar olduğundan dolayı hangi veritaba
 | Microsoft    	| ` SELECT @@version` 																								 |
 | PostgreSQL    | `SELECT version()`    																							 |
 |MySQL					| `SELECT @@version`																										 |
+
 Yukarıdaki yükler sırayla denenir ve sayfanın durumu incelenir. Aşağıda görüldüğü gibi bu lab PostgreSQL dir.
 ![Lab7 veritabanı kontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab7%20veritaban%C4%B1%20kontrol.png?raw=true)
 
@@ -39,7 +40,7 @@ Veritabanını öğrendiğimize göre sırada hangi tablolar olduğunu bulmakta.
 - `--` : Kendisinden sonra gelen tüm kodları (orijinal sorgunun devamındaki tırnaklar veya parantezler gibi) devre dışı bırakır.
 Aşağıda yükü uyguladıktan sonra tablo isimlerinin sayfada basılmış olduğu görünmekte. Resimde sayfanın sadece bir kısmı görünmekte çıktı resimdekinden daha uzun.
 
-![Lab7 tablo names](Lab7%20tablo%20names)
+![Lab7 tablo names](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Lab7%20tablo%20names.png?raw=true)
 Tablo adında users geçen tablo adını kaydediyoruz bu labda bu tablo adı users_hstxsl. Bu tablodaki colon isimlerini almalıyız bunu `' UNION SELECT COLUMN_NAME,NULL FROM information_schema.columns WHERE TABLE_NAME = 'users_hstxsl'--` yükü ile yaparız. Yükün ayrıntılı incelenmesi:
 - `SELECT COLUMN_NAME` : Tablonun sütunu çeker. Sütun isimlerini almış oluruz.
 -  `FROM information_schema.column` : `information_schema.column` adlı özel tabloya erişir. Bu tablo, o veritabanındaki tüm colunların listesini barındırır.
