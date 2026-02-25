@@ -11,9 +11,7 @@ Aşağıda, bazı popüler veritabanı türleri için veritabanı sürümünü b
 |Microsoft, MySQL| `SELECT @@version` |
 |Oracle|`SELECT * FROM v$version`|
 |PostgreSQL|`SELECT version()`|
-For example, you could use a `UNION` attack with the following input:
 
-    ' UNION SELECT @@version--
 > [Oracle'da veritabanı türü ve sürümünü sorgulayan SQL enjeksiyon saldırısı.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab5.md)
 
 > [SQLi saldırısı, MySQL ve Microsoft veritabanlarında veritabanı türü ve sürümünü bulma lab.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab6.md)
@@ -54,4 +52,4 @@ Oracle'da, aynı bilgileri aşağıdaki şekilde bulabilirsiniz:
   `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'` 
   
 
-> [SQL enjeksiyon saldırısı, Oracle'daki veritabanı içeriğini listeleme lab.](SQL%20enjeksiyon%20sald%C4%B1r%C4%B1s%C4%B1,%20Oracle%27daki%20veritaban%C4%B1%20i%C3%A7eri%C4%9Fini%20listeleme)
+> [SQL enjeksiyon saldırısı, Oracle'daki veritabanı içeriğini listeleme lab.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/SQLi%20sald%C4%B1r%C4%B1s%C4%B1%2C%20Oracle'daki%20veritaban%C4%B1%20i%C3%A7eri%C4%9Fini%20listeleme.md)
