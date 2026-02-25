@@ -45,3 +45,13 @@ Bu, aşağıdaki gibi bir çıktı döndürür:
 Bu çıktı, belirtilen tablodaki sütunları ve her sütunun veri türünü gösterir.
 
 > [SQLi saldırısı, veritabanlarındaki veritabanı içeriklerini listeleme lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Lab7.md)
+
+## Oracle veritabanının içeriğini listeleme
+Oracle'da, aynı bilgileri aşağıdaki şekilde bulabilirsiniz:
+- `all_tables` betiğini kullanarak tabloları listeleyebilirsiniz:
+ `SELECT * FROM all_tables`
+ - `all_tab_columns` betiğini kullanarak sütunları listeleyebilirsiniz:
+  `SELECT * FROM all_tab_columns WHERE table_name = 'USERS'` 
+  
+
+> [SQL enjeksiyon saldırısı, Oracle'daki veritabanı içeriğini listeleme lab.](SQL%20enjeksiyon%20sald%C4%B1r%C4%B1s%C4%B1,%20Oracle%27daki%20veritaban%C4%B1%20i%C3%A7eri%C4%9Fini%20listeleme)
