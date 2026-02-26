@@ -55,4 +55,4 @@ Sorgunun sonuçları tüm kullanıcı adlarını ve şifreleri içerir, örneği
     carlos~montoya
 Farklı veritabanları, dize birleştirme işlemini gerçekleştirmek için farklı söz dizimleri kullanır.
 
->  [SQLi UNION saldırısı, tek bir sütunda birden fazla değer alma lab](SQLi%20UNION%20sald%C4%B1r%C4%B1s%C4%B1,%20tek%20bir%20s%C3%BCtunda%20birden%20fazla%20de%C4%9Fer%20alma)
+>  [SQLi UNION saldırısı, tek bir sütunda birden fazla değer alma lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/SQLi%20UNION%20sald%C4%B1r%C4%B1s%C4%B1%2C%20tek%20bir%20s%C3%BCtunda%20birden%20fazla%20de%C4%9Fer%20alma%20lab.md)
