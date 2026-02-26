@@ -40,3 +40,19 @@ Sütunun veri türü ile string( a ) uyuşmuyor ise uygulama hata verir. Eğer o
 
 > [SQL enjeksiyon saldırılarında veritabanının incelenmesi](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/SQLi%20types/Examining%20the%20database.md)
 
+## Tek bir sütun içindeki birden fazla değeri alma
+Bazı durumlarda sorgu yalnızca tek bir sütun döndürebilir.
+
+Bu tek sütun içinde birden fazla değeri birleştirerek alabilirsiniz. Birleştirilmiş değerleri ayırt etmek için bir ayırıcı ekleyebilirsiniz. Örneğin, Oracle'da şu girdiyi gönderebilirsiniz:
+
+    ' UNION SELECT username || '~' || password FROM users--
+Bu, Oracle'da bir dize birleştirme operatörü olan çift boru dizisi `||` kullanır. Enjekte edilen sorgu, `~` karakteriyle ayrılmış kullanıcı adı ve parola alanlarının değerlerini birleştirir.
+
+Sorgunun sonuçları tüm kullanıcı adlarını ve şifreleri içerir, örneğin:
+
+    administrator~s3cure
+    wiener~peter
+    carlos~montoya
+Farklı veritabanları, dize birleştirme işlemini gerçekleştirmek için farklı söz dizimleri kullanır.
+
+>  [SQLi UNION saldırısı, tek bir sütunda birden fazla değer alma lab](SQLi%20UNION%20sald%C4%B1r%C4%B1s%C4%B1,%20tek%20bir%20s%C3%BCtunda%20birden%20fazla%20de%C4%9Fer%20alma)
