@@ -51,6 +51,14 @@ Uygulama slq sorgusunun sonuçlarını yanıt olarak verdiği durumlarda, saldı
 
 > [SQLi UNION saldırıları.](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/SQLi%20types/SQLi_UNION_attacks.md)
 
+## Blind SQL injection vulnerabilities
+SQL enjeksiyonunun birçok örneği Blind güvenlik açıklarıdır. Bu, uygulamanın SQL sorgusunun sonuçlarını veya veritabanı hatalarının ayrıntılarını yanıtlarında döndürmediği anlamına gelir. Blind güvenlik açıkları yine de yetkisiz verilere erişmek için kullanılabilir, ancak kullanılan teknikler genellikle daha karmaşık ve uygulanması daha zordur.
+
+Aşağıdaki teknikler, güvenlik açığının niteliğine ve ilgili veritabanına bağlı olarak Blind SQL enjeksiyonu güvenlik açıklarından yararlanmak için kullanılabilir:
+* Tek bir koşulun doğruluğuna bağlı olarak uygulamanın yanıtında algılanabilir bir fark tetiklemek için sorgunun mantığını değiştirebilirsiniz. Bu, bazı Boolean mantığına yeni bir koşul eklemeyi veya sıfıra bölme gibi bir hatayı koşullu olarak tetiklemeyi içerebilir.
+* Sorgunun işlenmesinde koşullu olarak bir zaman gecikmesi tetikleyebilirsiniz. Bu, uygulamanın yanıt verme süresine bağlı olarak koşulun doğruluğunu çıkarmanızı sağlar.
+
+> [Blind SQL injection]()
 		
 
 
