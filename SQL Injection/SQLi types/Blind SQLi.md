@@ -6,9 +6,6 @@ Kör SQL enjeksiyonu (Blind SQL Injection), bir web uygulamasının veritabanın
 Kör (Blind) SQL Enjeksiyonu'nun Koşullu Yanıtlar (Conditional Responses) üzerinden sömürülmesi, veritabanına "Evet" veya "Hayır" cevabı alabileceğiniz mantıksal sorular sormaya benzer. Ekranda hiçbir veri görmezsiniz, ancak sayfanın değişip değişmemesinden cevabı anlarsınız.
 
 Süreci bir dedektiflik oyunu gibi adım adım inceleyelim:
-
-----------
-
 ### 1. Zafiyetin Tespiti (Evet/Hayır Testi)
 
 Önce sayfanın verdiğimiz mantıksal komutlara tepki verip vermediğini ölçeriz. Bir ürün sayfası düşünün: `site.com/urun.php?id=5`
@@ -21,8 +18,6 @@ Süreci bir dedektiflik oyunu gibi adım adım inceleyelim:
         
 
 Eğer bu iki deneme farklı sonuç veriyorsa, veritabanını konuşturmaya başlayabiliriz.
-
-----------
 
 ### 2. Veri Çekme Stratejisi
 
@@ -53,9 +48,8 @@ Veritabanındaki bir tablo ismini veya şifreyi öğrenmek için karakter karakt
 	-   Sayfa hata verdi -> İlk harf 'b' değil.
     
 -   **1. Harf için:** `AND (SELECT SUBSTR(username,1,1) FROM users WHERE id=1) = 'c'`
-	-    Sayfa hata vermedi ilk harf 'c' bu şekilde tük katakterle denenir.
+	-    Sayfa hata vermedi ilk harf 'c' bu şekilde tüm katakterle denenir.
     
-    -   Saldırganlar genellikle süreci hızlandırmak için "büyüktür/küçüktür" sorguları kullanır: `AND (SELECT ASCII(SUBSTR(username,1,1))) > 100`
 
-> [Koşullu yanıtlarla Blind SQL enjeksiyonu](Ko%C5%9Fullu%20yan%C4%B1tlarla%20Blind%20SQL%20enjeksiyonu)
+> [Koşullu yanıtlarla Blind SQL enjeksiyonu Lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Ko%C5%9Fullu%20yan%C4%B1tlarla%20Blind%20SQLi.md)
 
