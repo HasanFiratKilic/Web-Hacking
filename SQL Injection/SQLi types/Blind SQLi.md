@@ -59,3 +59,33 @@ Veritabanındaki bir tablo ismini veya şifreyi öğrenmek için karakter karakt
 
 > [Koşullu yanıtlarla Blind SQL enjeksiyonu](Ko%C5%9Fullu%20yan%C4%B1tlarla%20Blind%20SQL%20enjeksiyonu)
 
+## Hata Tabanlı SQL Enjeksiyonu (Error-based SQL Injection)
+Hata tabanlı SQL Enjeksiyonu (Error-based SQL Injection), veritabanından dönen hata mesajlarını kullanarak hassas verileri çıkardığınız veya tahmin ettiğiniz bir siber saldırı yöntemidir. Bu yöntem, uygulamanın normalde veri döndürmediği "kör" (blind) durumlarda bile oldukça etkilidir.
+
+### Koşullu Hataları Tetikleyerek Kör SQL Enjeksiyonunu İstismar Etme
+Normal bir Blind SQL Injection'da sayfa içeriğine bakarsın. Ancak sayfa hiç değişmiyorsa, sunucunun HTTP 500 (Internal Server Error) döndürüp döndürmediğine bakarsın.
+
+Buradaki sihirli değneğimiz Mantıksal Bomba yerleştirmektir. Genellikle matematiksel olarak imkansız olan `1/0` (sıfıra bölme hatası) kullanılır.
+
+1.  `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a`
+    
+2.  `xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a`
+    
+
+Bu girişler, bir koşulu test etmek için `CASE` anahtar kelimesini kullanır ve koşulun doğru olup olmamasına göre farklı bir ifade döndürür:
+
+-   **İlk girişte:** `CASE` ifadesi `'a'` değerini döndürür, bu da herhangi bir hataya neden olmaz.
+    
+-   **İkinci girişte:** İfade `1/0` değerini döndürür, bu da **sıfıra bölünme (divide-by-zero)** hatasına yol açar.
+
+Eğer bu hata, uygulamanın HTTP yanıtında bir değişikliğe (örneğin 500 Internal Server Error) neden oluyorsa, enjekte edilen koşulun doğru olup olmadığını belirleyebilirsiniz.
+### Örnek Senaryo:
+
+Bir web sitesine şu soruyu sorduğunu hayal et: _"Eğer adminin şifresinin ilk harfi 'A' ise kendini imha et (hata ver), değilse normal davran."_
+
+-   **Durum A (Yanlış tahmin):** Şifre 'B' ile başlıyorsa, bomba tetiklenmez. Sayfa normal açılır (HTTP 200).
+    
+-   **Durum B (Doğru tahmin):** Şifre 'A' ile başlıyorsa, `1/0` işlemi çalışır. Veritabanı "Hata!" der ve web sitesi çöker veya hata mesajı verir (HTTP 500).
+
+
+> [Koşullu hatalarla kör SQL enjeksiyonu lab]()
