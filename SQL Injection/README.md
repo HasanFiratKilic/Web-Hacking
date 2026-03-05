@@ -58,7 +58,7 @@ Aşağıdaki teknikler, güvenlik açığının niteliğine ve ilgili veritaban�
 * Tek bir koşulun doğruluğuna bağlı olarak uygulamanın yanıtında algılanabilir bir fark tetiklemek için sorgunun mantığını değiştirebilirsiniz. Bu, bazı Boolean mantığına yeni bir koşul eklemeyi veya sıfıra bölme gibi bir hatayı koşullu olarak tetiklemeyi içerebilir.
 * Sorgunun işlenmesinde koşullu olarak bir zaman gecikmesi tetikleyebilirsiniz. Bu, uygulamanın yanıt verme süresine bağlı olarak koşulun doğruluğunu çıkarmanızı sağlar.
 
-> [Blind SQL injection]()
+> [Blind SQL injection](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/SQLi%20types/Blind%20SQLi.md)
 		
 
 

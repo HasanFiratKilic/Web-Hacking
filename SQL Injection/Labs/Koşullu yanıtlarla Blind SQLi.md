@@ -39,6 +39,7 @@ Veri tabanı tespiti için kullanılacak yükler:
 |**MySQL**|`AND (SELECT 1 FROM (SELECT version()) AS t)=1`|
 |**Oracle**|`AND (SELECT 'A' FROM dual)='A'`|
 |**MS SQL Server**|`AND (SELECT @@version) LIKE '%SQL%'`|
+
 Yükün uygulanmış hali:
 ![Blind SQL injection with conditional responses vdetect](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20vdetect.png?raw=true)
 
