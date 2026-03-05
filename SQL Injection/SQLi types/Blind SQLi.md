@@ -82,4 +82,4 @@ Bir web sitesine şu soruyu sorduğunu hayal et: _"Eğer adminin şifresinin ilk
 -   **Durum B (Doğru tahmin):** Şifre 'A' ile başlıyorsa, `1/0` işlemi çalışır. Veritabanı "Hata!" der ve web sitesi çöker veya hata mesajı verir (HTTP 500).
 
 
-> [Koşullu hatalarla kör SQL enjeksiyonu lab]()
+> [Koşullu hatalarla kör SQL enjeksiyonu lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Ko%C5%9Fullu%20hatalarla%20k%C3%B6r%20SQL%20enjeksiyonu.md)
