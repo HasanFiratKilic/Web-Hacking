@@ -93,7 +93,7 @@ Yükün incelenmesi:
 4. Sorgu(`numer` = 1, `char` = i): Sayfa hata vermedi. İlk karakter 'i' olur.
 5. Son konrol(`numer` = 1, `char` = i , `>` yerine `=`) : Sayfa hata verdi. İlk karakter 'i'
 
-Bu şekilde tüm karakterler denenir. Bu çok uzun süreceğinden ben bir python kodu yazdım [link](python)'den sizde kullanabilirsiniz. Bu kod `' AND (SELECT  CASE WHEN ((SELECT SUBSTR(password,number,1) FROM users WHERE username = 'administrator')='char' ) THEN TO_CHAR(1/0) ELSE 'A' END FROM DUAL) = 'A` yükündeki number ve char ksımlarını değiştirir eğer sayfa 500 hata kodunu döndürürse number ve char kaydedilir en son ekrana basılı tüm karakterler ve yerleri bulunmuş olur.
+Bu şekilde tüm karakterler denenir. Bu çok uzun süreceğinden ben bir python kodu yazdım [link](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Cods/BSQLi_CBF.py)'den sizde kullanabilirsiniz. Bu kod `' AND (SELECT  CASE WHEN ((SELECT SUBSTR(password,number,1) FROM users WHERE username = 'administrator')='char' ) THEN TO_CHAR(1/0) ELSE 'A' END FROM DUAL) = 'A` yükündeki number ve char ksımlarını değiştirir eğer sayfa 500 hata kodunu döndürürse number ve char kaydedilir en son ekrana basılı tüm karakterler ve yerleri bulunmuş olur.
 ![Blind SQLİ with conditional errors pbulma](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%C4%B0%20with%20conditional%20errors%20pbulma.png?raw=true)
 
 Son olarak bulduğumuz parola ile giriş yapıyoruz ve lab çözülmüş oluyor.
