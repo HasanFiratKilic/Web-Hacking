@@ -102,4 +102,4 @@ Saldırgan, bir sayı bekleyen parametreye veritabanı versiyonunu döndüren bi
 
 Saldırgan burada aradığı bilgiyi (versiyonu) hata mesajının içinde açıkça görmüş olur.
 
-> [Görünür hata tabanlı SQL enjeksiyonu Lab]()
+> [Görünür hata tabanlı SQL enjeksiyonu Lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Visible%20error-based%20SQLi.md)
