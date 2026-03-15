@@ -126,6 +126,7 @@ Bu sorguyu şu parçalara bölebiliriz:
 | `...SUBSTRING(Pass, 1, 1) > 'm'` | 10 Saniye Gecikme |Harf 'm'den büyük (n-z arası). |
 |`...SUBSTRING(Pass, 1, 1) > 't'`|Hemen Yanıt|Harf 't'den büyük değil (n-t arası).|
 |`...SUBSTRING(Pass, 1, 1) = 's'`|10 Saniye Gecikme|Buldun! İlk harf 's'.|
+
 Aynı işlem 2. karakter, 3. karakter diye devam eder. Şifre 10 karakterliyse ve her karakter için ortalama 5-6 soru sorulursa, tüm şifre sessizce ele geçirilir.
 
->  [Zaman gecikmeleri ve bilgi alma ile Blind SQL enjeksiyonu lab](lab)
+>  [Zaman gecikmeleri ve bilgi alma ile Blind SQL enjeksiyonu lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/BSQLi%20with%20time%20delays%20and%20information%20retrieval.md)
