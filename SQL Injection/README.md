@@ -105,7 +105,7 @@ Farklı bağlamlarda (contexts) kullanılan diğer yöntemler şunlardır:
 
  
 
-> [XML kodlaması yoluyla filtre atlamalı SQL enjeksiyonu lab](lab)
+> [XML kodlaması yoluyla filtre atlamalı SQL enjeksiyonu lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/XML%20kodlamas%C4%B1%20yoluyla%20filtre%20atlamal%C4%B1%20SQL%20enjeksiyonu%20lab.md)
 		
 
 
