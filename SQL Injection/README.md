@@ -59,6 +59,53 @@ Aşağıdaki teknikler, güvenlik açığının niteliğine ve ilgili veritaban�
 * Sorgunun işlenmesinde koşullu olarak bir zaman gecikmesi tetikleyebilirsiniz. Bu, uygulamanın yanıt verme süresine bağlı olarak koşulun doğruluğunu çıkarmanızı sağlar.
 
 > [Blind SQL injection](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/SQLi%20types/Blind%20SQLi.md)
+
+## Farklı bağlamlarda SQL enjeksiyonu
+Uygulamanın veriyi hangi formatta aldığı (JSON, XML veya Form verisi) önemli değildir. Önemli olan, bu verinin **sunucu tarafında nasıl işlendiğidir.**
+
+-   **Klasik:** `storeId=999`
+    
+-   **JSON:** `{"storeId": 999}`
+    
+-   **XML:** `<storeId>999</storeId>`
+    
+
+Eğer sunucu bu `999` değerini alıp doğrudan bir SQL sorgusunun içine koyuyorsa, format ne olursa olsun orada bir SQL Injection riski vardır.
+
+### WAF (Web Application Firewall) Engeli
+
+Güvenlik duvarları (WAF), gelen trafiği bir filtre gibi tarar. Eğer paket içinde `SELECT`, `UNION`, `DROP` gibi "tehlikeli" kelimeler görürse paketi çöpe atar.
+
+İşte bu noktada **Obfuscation (Karartma/Gizleme)** devreye girer.
+
+### XML Kaçış Karakterleri (Encoding) ile Aldatma
+
+Bu XML örneği muazzam bir hiledir: `999 &#x53;ELECT ...`
+
+Burada ne oluyor?
+
+1.  **Saldırı Anı:** WAF paketi inceler. İçinde `SELECT` kelimesini arar. Ama paket içinde `SELECT` değil, `&#x53;ELECT` yazar. WAF bunu "zararsız bir metin" sanır ve geçişe izin verir.
+    
+2.  **Sunucu Tarafı:** XML verisi sunucuya ulaştığında, sunucudaki XML işleyici (parser) bu "kaçış karakterini" (`&#x53;`) çözer ve onu gerçek harfi olan **S**'ye dönüştürür.
+    
+3.  **SQL Veritabanı:** Artık elimizde tertemiz bir `SELECT` komutu vardır ve veritabanı bu komutu çalıştırır.
+    
+
+### Diğer Popüler Gizleme Yöntemleri
+
+Farklı bağlamlarda (contexts) kullanılan diğer yöntemler şunlardır:
+
+-   **URL Encoding:** `SELECT` yerine `%53ELECT` yazmak.
+    
+-   **Double Encoding:** Bazı sistemler veriyi iki kez çözer. `%2553` (Yüzde işaretinin kendisini de encode etmek).
+    
+-   **Comment Injection:** `SEL/**/ECT` yazarak araya boş yorum satırları eklemek (bazı eski filtreleri bozabilir).
+    
+-   **Case Variation:** `sElEcT` yazmak (Eğer filtre sadece küçük harf veya büyük harf arıyorsa).
+
+ 
+
+> [XML kodlaması yoluyla filtre atlamalı SQL enjeksiyonu lab](lab)
 		
 
 
