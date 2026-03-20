@@ -126,32 +126,7 @@ Bu sorguyu şu parçalara bölebiliriz:
 | `...SUBSTRING(Pass, 1, 1) > 'm'` | 10 Saniye Gecikme |Harf 'm'den büyük (n-z arası). |
 |`...SUBSTRING(Pass, 1, 1) > 't'`|Hemen Yanıt|Harf 't'den büyük değil (n-t arası).|
 |`...SUBSTRING(Pass, 1, 1) = 's'`|10 Saniye Gecikme|Buldun! İlk harf 's'.|
+
 Aynı işlem 2. karakter, 3. karakter diye devam eder. Şifre 10 karakterliyse ve her karakter için ortalama 5-6 soru sorulursa, tüm şifre sessizce ele geçirilir.
 
->  [Zaman gecikmeleri ve bilgi alma ile Blind SQL enjeksiyonu lab](lab)
-
-## Zaman gecikmelerini tetikleyerek Blind SQL enjeksiyonundan yararlanma
-Normal SQL enjeksiyonunda veriler sayfada basılır; "Boolean" tabanlı SQL enjeksiyonunda sayfa yapısındaki değişikliklere (True/False) bakılır. Ancak Zaman Gecikmeli SQLi'de sunucu hiçbir farklı yanıt vermez.
-
-Buradaki tek gösterge yanıt süresidir. Saldırgan, veritabanına "Eğer bu bilgi doğruysa 5 saniye bekle" komutu gönderir. Eğer yanıt 5 saniye geç gelirse, saldırgan sorduğu sorunun cevabının "Evet" olduğunu anlar.
- 
- Zaman gecikmesini tetikleme teknikleri veri tabanı türüne göre değişmekte. Aşağıdaki yük ile zaman geçikmesi tetiklenebilir.
-
-     '; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--      
-Bu sorguyu şu parçalara bölebiliriz:
-
-1.  **`SUBSTRING(Password, 1, 1)`**: Şifrenin 1. karakterini al.
-    
-2.  **`> 'm'`**: Bu karakter 'm' harfinden sonra mı geliyor? (Örn: n, o, p...)
-    
-3.  **`IF (...) WAITFOR DELAY '0:0:10'`**: Eğer bu şart doğruysa, veritabanına "10 saniye boyunca hiçbir şey yapmadan dur" talimatı verilir.
-
-Örnek senaryo:
-| Gönderilen Sorgu (Şart Kısmı) | Sunucu Tepkisi |Sonuç|
-|--|--|--|
-| `...SUBSTRING(Pass, 1, 1) > 'm'` | 10 Saniye Gecikme |Harf 'm'den büyük (n-z arası). |
-|`...SUBSTRING(Pass, 1, 1) > 't'`|Hemen Yanıt|Harf 't'den büyük değil (n-t arası).|
-|`...SUBSTRING(Pass, 1, 1) = 's'`|10 Saniye Gecikme|Buldun! İlk harf 's'.|
-Aynı işlem 2. karakter, 3. karakter diye devam eder. Şifre 10 karakterliyse ve her karakter için ortalama 5-6 soru sorulursa, tüm şifre sessizce ele geçirilir.
-
->  [Zaman gecikmeleri ve bilgi alma ile Blind SQL enjeksiyonu lab](lab)
+>  [Zaman gecikmeleri ve bilgi alma ile Blind SQL enjeksiyonu lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/Labs/BSQLi%20with%20time%20delays%20and%20information%20retrieval.md)
