@@ -15,8 +15,8 @@ Lab açılışı aşağıdaki gibi:
 
 Lab açıklamasında uygulamanın sorgu için kullandığı gönderilen xml yükünü buluyoruz:
 ![SQLi with filter bypass via XML encoding xml](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/SQLi%20with%20filter%20bypass%20via%20XML%20encoding%20xml.png?raw=true)
-
-![SQLi with filter bypass via XML encoding ](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/SQLi%20with%20filter%20bypass%20via%20XML%20encoding%20.gif?raw=true)
+Aşağıdaki gifte gösterildiği gibi:
+![SQLi with filter bypass via XML encoding](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/SQLi%20with%20filter%20bypass%20via%20XML%20encoding%20.gif?raw=true&loop=1&autoplay=1)
 
 Buradaki yükte oynamalar yapıp SQLi olup olmadığını kontrol edebiliriz. `storeId` değerine `+1` ekleyerek sayfa yanıtındaki değişiklik gözlemlenir. Eğer yanıt değişirde burada bir SQLi olduğunu söyleyebiliriz. Yükü yolladığımızda yanıt olarak 48 döndüğünden SQLi var diyebiliriz.
 ![SQLi with filter bypass via XML encoding kontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/SQLi%20with%20filter%20bypass%20via%20XML%20encoding%20kontrol.png?raw=true)
