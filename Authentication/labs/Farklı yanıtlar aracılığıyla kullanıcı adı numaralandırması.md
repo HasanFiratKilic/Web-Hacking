@@ -20,11 +20,13 @@ Labın açıklamasındaki kullanıcı adılarını tek tek deneyip sayfanın hat
 -  `-d "username=FUZZ&password=test"` :  POST gövdesinde gönderilecek veri.`FUZZ`, kelime listesindeki her bir kelime ile değişir.
 -  `-fr "Invalid username"` : Cevapların içinde `"Invalid username"` yazıyorsa bu cevapları filtrele (gösterme).
 Programı çalıştırdığımızda kullanıcı adı olarak `appserver` adlı bir kullanıcı adı bulmuş oldum.
+
 ![Farklı yanıtlar aracılığıyla kullanıcı adı numaralandırması username](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/images/Farkl%C4%B1%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1%20username.png?raw=true)
 
 Şimdi bulunan kullanıcı adına labın açıklamasındaki parolalar ile brute force yaparak doğru parolayı bulmaya çalışılır. Kullanıcı adını numaralandırmak için kullanılan komut üzerinde bazı değişiklikler ile parola bulunabilir. Yapılacak değişiklikler:
 - `-d "username=appserve&password=FUZZ"` : appserver kullanıcısı için tüm parolaları tek tek FUZZ kısmına terleştirilerek denenir.
 - `-mc 302` : Bu dönen yanıtlardan HTTP kodu 302 olan yanıtları ekranda gösterir. Sayfa doğru kullanıcı adı ve parola verildiğinda sayfa 302 kodu ile yönlendirme yapar.
+
 Komutu çalıştırıldığında parola olarak `qazwsx` ekranda görünmekte.
 ![Farklı yanıtlar aracılığıyla kullanıcı adı numaralandırması pass](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/images/Farkl%C4%B1%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1%20pass.png?raw=true)
 
