@@ -61,7 +61,7 @@ Kimlik doğrulama mekanizmalarındaki güvenlik açıkları (zafiyetler), genell
 >  **Neden Çok Kritik?** Web geliştirme süreçlerinin herhangi bir aşamasında yapılan mantık hataları, sitenin sadece beklenmedik veya tuhaf davranmasına neden olabilir; bu her zaman doğrudan bir güvenlik riski yaratmaz. Ancak, **kimlik doğrulama** sistemin en önemli savunma hattı olduğundan, buradaki hatalı bir mantık veya kötü bir kodlama web sitesini çok ciddi güvenlik ihlallerine maruz bırakır.
 
 Aşağıdaki alanlarda en sık karşılaşılan güvenlik açıklarından bazıları:
--   [Parola tabanlı girişlerdeki güvenlik açıkları]() 
+-   [Parola tabanlı girişlerdeki güvenlik açıkları](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/Authentication%20types/Parola%20tabanl%C4%B1%20giri%C5%9Flerdeki%20g%C3%BCvenlik%20a%C3%A7%C4%B1klar%C4%B1.md) 
 -   [Çok faktörlü kimlik doğrulamada güvenlik açıkları]() 
 -   [Diğer kimlik doğrulama mekanizmalarındaki güvenlik açıkları]() 
 
