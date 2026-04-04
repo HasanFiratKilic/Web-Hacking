@@ -88,25 +88,25 @@ Saldırganlar bu iyi niyetli mantık hatasını çok basit bir yöntemle sömür
 
 Hedef hesabın (`carlos123`) parolasını bulmaya çalışan bir saldırganın istek sırası şöyle görünür:
 
--   **Deneme 1:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 1)_
+-   **Deneme 1:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 1)_
     
--   **Deneme 2:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 2)_
+-   **Deneme 2:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 2)_
     
--   **Deneme 3:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 3)_
+-   **Deneme 3:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 3)_
     
--   **Deneme 4:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 4)_ ⚠️ _IP Engellenmeye çok yakın!_
+-   **Deneme 4:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 4)_  _IP Engellenmeye çok yakın!_
     
--   **Deneme 5:** **Saldırganın Kendi Hesabı (`saldirgan_hesap`) - Doğru Parola** ✅ _(BAŞARILI GİRİŞ! IP Hata Sayacı sıfırlanır: 0)_
+-   **Deneme 5:** **Saldırganın Kendi Hesabı (`saldirgan_hesap`) - Doğru Parola**  _(BAŞARILI GİRİŞ! IP Hata Sayacı sıfırlanır: 0)_
     
--   **Deneme 6:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 1)_
+-   **Deneme 6:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 1)_
     
--   **Deneme 7:** Hedef `carlos123` - Hatalı Parola ❌ _(IP Hata Sayacı: 2)_
+-   **Deneme 7:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 2)_
     
 
 Saldırgan, kullandığı listede her 4 hatalı denemeden sonra kendi hesabına başarılı bir giriş yaparak sayacı sürekli sıfırlar. Bu basit numara sayesinde IP adresi hiçbir zaman engelleme sınırına ulaşmaz ve kaba kuvvet savunması tamamen işlevsiz hale gelir.
  
 
-> [Bozuk kaba kuvvet koruması, IP engelleme lab](lab)
+> [Bozuk kaba kuvvet koruması, IP engelleme lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Kaba%20kuvvet%20sald%C4%B1r%C4%B1s%C4%B1%20korumas%C4%B1%20bozuk%2C%20IP%20engelleme.md)
 
 
 
