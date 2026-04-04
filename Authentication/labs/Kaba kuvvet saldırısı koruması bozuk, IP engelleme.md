@@ -8,7 +8,7 @@ Bu laboratuvar, parola kaba kuvvet saldırısı korumasındaki mantıksal bir ha
 Lab açılışı:
 ![Broken brute-force protection, IP block ilk](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/images/Broken%20brute-force%20protection,%20IP%20block%20ilk.png?raw=true)
 
-Giriş işleme 3 yanlık deneme sonrsı 1 dakika giriş işlemini kitlemekte ama 2 deneme sonrasında 1 doğru giriş işlemi gerçekleşirse deneme hakkı sıfırlanır. Bu işlemler dikkata alınarak bu işlemleri otomatik gerçekleştirecek [program](kod) yazılarak gerçekleştirilebilir. Bu kod her 2 denemeden sonra 1 başarılı giriş ilemi yaparak denemeyi sıfırlar ve doğru parola girildiğinde web uygulaması 302 kodu döndüğünde program girmiş olduğu parolayı ekranda yazar.
+Giriş işleme 3 yanlık deneme sonrsı 1 dakika giriş işlemini kitlemekte ama 2 deneme sonrasında 1 doğru giriş işlemi gerçekleşirse deneme hakkı sıfırlanır. Bu işlemler dikkata alınarak bu işlemleri otomatik gerçekleştirecek [program](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/cods/ip_block_bf.py) yazılarak gerçekleştirilebilir. Bu kod her 2 denemeden sonra 1 başarılı giriş ilemi yaparak denemeyi sıfırlar ve doğru parola girildiğinde web uygulaması 302 kodu döndüğünde program girmiş olduğu parolayı ekranda yazar.
 ![Broken brute-force protection, IP block pass](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/images/Broken%20brute-force%20protection,%20IP%20block%20pass.png?raw=true)
 
 Son olarak bulunan parole ile giriş işlemi gerçekleştirilir.
