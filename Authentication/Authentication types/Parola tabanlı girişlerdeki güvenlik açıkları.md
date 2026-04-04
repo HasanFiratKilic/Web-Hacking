@@ -170,7 +170,7 @@ En sinsi ve tespiti zor olan yöntemdir. Sistem her iki durumda da aynı durum k
 -   **Zafiyeti Sömürmek:** Saldırgan, bu gecikmeyi daha da belirginleştirmek için parola kısmına **kasten çok uzun (örneğin 5000 karakterlik)** bir metin girer. Eğer kullanıcı adı doğruysa, sistem bu devasa metni hash'lemeye çalışırken çok daha fazla zorlanır ve yanıt süresi saniyelere çıkar. Eğer kullanıcı adı yanlışsa, sistem parolayı hiç kontrol etmediği için yine 50 milisaniyede yanıt verir. Aradaki bu devasa süre farkı, kullanıcının gerçek olduğunu kanıtlar.
 
 >  [Farklı yanıtlar aracılığıyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Farkl%C4%B1%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)</br>
-> [İnce farklılıklar gösteren yanıtlar aracılığıyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/%C4%B0nce%20farkl%C4%B1l%C4%B1klar%20g%C3%B6steren%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)
-        
+> [İnce farklılıklar gösteren yanıtlar aracılığıyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/%C4%B0nce%20farkl%C4%B1l%C4%B1klar%20g%C3%B6steren%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)</br>
+> [Yanıt zamanlaması yoluyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Yan%C4%B1t%20zamanlamas%C4%B1%20yoluyla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)        
 
 
