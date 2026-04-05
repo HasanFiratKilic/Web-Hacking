@@ -259,4 +259,4 @@ Hesap kilitleme mekanizmasının çaresiz kaldığı bir diğer senaryo ise **Cr
 
 Her hesap için sadece **1 adet** deneme yapıldığından, "3 hatada kilitle" kuralı hiçbir zaman çalışmaz ve sistem bu devasa saldırıya karşı savunmasız kalır.
 
- [Hesap kilidi aracılığıyla kullanıcı adı numaralandırması lab](Hesap%20kilidi%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1)
+> [Hesap kilidi aracılığıyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Hesap%20kilidi%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)
