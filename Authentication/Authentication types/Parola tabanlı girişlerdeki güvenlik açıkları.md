@@ -173,4 +173,45 @@ En sinsi ve tespiti zor olan yöntemdir. Sistem her iki durumda da aynı durum k
 > [İnce farklılıklar gösteren yanıtlar aracılığıyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/%C4%B0nce%20farkl%C4%B1l%C4%B1klar%20g%C3%B6steren%20yan%C4%B1tlar%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)</br>
 > [Yanıt zamanlaması yoluyla kullanıcı adı numaralandırması lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Yan%C4%B1t%20zamanlamas%C4%B1%20yoluyla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1.md)        
 
+## Kusurlu Kaba Kuvvet (Brute-Force) Korumaları
 
+Kaba kuvvet saldırıları, doğası gereği başarıya ulaşmadan önce binlerce, hatta milyonlarca "başarısız" deneme yapılmasını gerektirir. Bu nedenle savunma mekanizmaları, süreci otomatikleştirmeyi zorlaştırmak ve saldırganın deneme hızını yavaşlatmak (veya tamamen durdurmak) üzerine kuruludur.
+
+Bu saldırıları önlemek için kullanılan en yaygın iki yöntem şunlardır:
+
+1.   **Hesap Kilitleme (Account Lockout):** Belirli bir hesaba art arda çok sayıda başarısız giriş yapıldığında, o hesabın geçici olarak (örneğin 15 dakikalığına) kilitlenmesi.
+    
+2.   **IP Engelleme (IP Blocking / Rate Limiting):** Aynı IP adresinden kısa süre içinde çok sayıda başarısız giriş denemesi gelirse, sunucunun o IP adresinden gelen istekleri engellemesi (banlaması).
+    
+
+Her iki yaklaşım da belirli bir seviyede koruma sağlar; ancak arka plandaki yazılım mantığı kusurluysa (flawed logic) bu önlemler kolayca atlatılabilir.
+
+### Atlatma Senaryosu: IP Engelleme Sayacının Sıfırlanması Zafiyeti
+
+Uygulamalarda sıkça karşılaşılan büyük bir mantık hatası şudur: Sistem, IP engelleme sayacını _"Aynı IP'den 5 başarısız deneme gelirse IP'yi engelle"_ şeklinde kurar. Ancak normal kullanıcıların yanlışlıkla IP'lerini banlatmasını engellemek için kodun içine şu kuralı ekler: _"Eğer o IP adresinden **başarılı bir giriş** yapılırsa, hata sayacını sıfırla."_
+
+Saldırganlar bu iyi niyetli mantık hatasını çok basit bir yöntemle sömürür: Sistemde **kendilerine ait, şifresini bildikleri geçerli bir hesap** (`saldirgan_hesap`) açarlar. Ardından, otomatik saldırı araçlarındaki kelime listesinin (wordlist) arasına kendi doğru giriş bilgilerini serpiştirirler.
+
+**Adım Adım Atlatma (Bypass) Akışı:**
+
+Hedef hesabın (`carlos123`) parolasını bulmaya çalışan bir saldırganın istek sırası şöyle görünür:
+
+-   **Deneme 1:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 1)_
+    
+-   **Deneme 2:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 2)_
+    
+-   **Deneme 3:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 3)_
+    
+-   **Deneme 4:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 4)_  _IP Engellenmeye çok yakın!_
+    
+-   **Deneme 5:** **Saldırganın Kendi Hesabı (`saldirgan_hesap`) - Doğru Parola**  _(BAŞARILI GİRİŞ! IP Hata Sayacı sıfırlanır: 0)_
+    
+-   **Deneme 6:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 1)_
+    
+-   **Deneme 7:** Hedef `carlos123` - Hatalı Parola  _(IP Hata Sayacı: 2)_
+    
+
+Saldırgan, kullandığı listede her 4 hatalı denemeden sonra kendi hesabına başarılı bir giriş yaparak sayacı sürekli sıfırlar. Bu basit numara sayesinde IP adresi hiçbir zaman engelleme sınırına ulaşmaz ve kaba kuvvet savunması tamamen işlevsiz hale gelir.
+ 
+
+> [Bozuk kaba kuvvet koruması, IP engelleme lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Kaba%20kuvvet%20sald%C4%B1r%C4%B1s%C4%B1%20korumas%C4%B1%20bozuk%2C%20IP%20engelleme.md)
