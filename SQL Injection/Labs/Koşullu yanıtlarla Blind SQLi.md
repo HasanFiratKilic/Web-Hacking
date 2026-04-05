@@ -8,19 +8,19 @@ Veritabanında, `username` ve `password` adlı sütunlara sahip, `users` adlı f
 Lab'ı çözmek için yönetici kullanıcısı olarak oturum açın.
 
 Lab bizi aşağıdaki gibi karşılıyor:
-![Blind SQL injection with conditional responses ilk](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20ilk.png?raw=true)
+![Blind SQL injection with conditional responses ilk](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20ilk.png?raw=true)
 
 Web uygulamasının izleme için kullandığı çereze bir göz atalım. Ben bunun için firefox da Cookie-Editor([indirme link'i](https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/)) eklentisini kullandım. 
-![Blind SQL injection with conditional responses cookie](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20cookie.png?raw=true)
+![Blind SQL injection with conditional responses cookie](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20cookie.png?raw=true)
 
 TrackingId cookie'sinde değişiklik yapıp gözlemlediğimizde `Welcome back` yazısının görünmediğini görüyoruz.
-![Blind SQL injection with conditional responses konrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20konrol.png?raw=true)
+![Blind SQL injection with conditional responses konrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20konrol.png?raw=true)
 
 Bazı mantıksal yükler kullanarak sayfanın nasıl davrandığını gözlemleyelim. İlk olarak `' and 1=1--` yükünü uyguladığımızda  `Welcome back` yazısı görünür olmakta.
-![Blind SQL injection with conditional responses bkonrol1](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20bkonrol1.png?raw=true)
+![Blind SQL injection with conditional responses bkonrol1](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20bkonrol1.png?raw=true)
 
 İkincil olarak mantıksal olarak yanlış olan bir yük ile sayfayı gözlemleyelim. `' and 1=2--` yükünü sayfada uyguladığımızda `Welcome back` görünmüyor. Bu bize bazı mantıksal yükleri kullanarak veritabanında erşememiz gereken bilgilere erişebiliceğimizi gösterir.
-![Blind SQL injection with conditional responses bkonrol2](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20bkonrol2.png?raw=true)
+![Blind SQL injection with conditional responses bkonrol2](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20bkonrol2.png?raw=true)
 
 Sayfanın veri tabanını bulmaya çalışalım. `' AND (SELECT 'A' FROM version()) = 'A` yükünü uyguladığımızda sayfada `Welcome back` yazısı görünür olmakta bu bize uygulamada postgresql kullanıldığını gösterir. Yükün incelenmesi:
 - `'` : Orijinal sorgudaki veri girişini kapatır. Sorguyu bozmadan yanına yeni bir mantıksal koşul (`AND`) ekleyebilmek için zemin hazırlar.
@@ -41,7 +41,7 @@ Veri tabanı tespiti için kullanılacak yükler:
 |**MS SQL Server**|`AND (SELECT @@version) LIKE '%SQL%'`|
 
 Yükün uygulanmış hali:
-![Blind SQL injection with conditional responses vdetect](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20vdetect.png?raw=true)
+![Blind SQL injection with conditional responses vdetect](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20vdetect.png?raw=true)
 
 Veri tabanını PostgreSQL olduğunu bulduğumuza göre `user` tablosunun var olup olmadığının kontrolünu yapmalıyız. `' AND (SELECT 'A' FROM user LIMIT 1) = 'A` yükünü uyguladığımızda sayfada `Welcome back` yazısı görünmekte bu `users` tablosunun olduğunu gösterir.
 - `(SELECT 'A' FROM user LIMIT 1)` : Bu parça, veritabanında `user` isminde bir tablo olup olmadığını anlamasını sağlar.
@@ -50,10 +50,10 @@ Veri tabanını PostgreSQL olduğunu bulduğumuza göre `user` tablosunun var ol
 	- `LIMIT 1` : Sadece tek bir satır getirilmesini zorunlu kılar. Bazı veritabanları `AND` karşılaştırmasında alt sorgudan birden fazla satır gelirse hata verir. `LIMIT 1` bu riski ortadan kaldırarak temiz bir sonuç sağlar.
 
 Yükün uygulanmış hali:
-![Blind SQL injection with conditional responses tkontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20tkontrol.png?raw=true)
+![Blind SQL injection with conditional responses tkontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20tkontrol.png?raw=true)
 
 Şimdi `users` tablosunda `administrator` kullanıcısının olup olmadığını konrol etmeliyiz. `' AND (SELECT 'A' FROM users WHERE username = 'administrator') = 'A` yükünü uyguladığımızda sayfada  `Welcome back`  yazısını gömüş oluruz yani `administrator` kullanıcısı `users` tablosunda mevcut.
-![Blind SQL injection with conditional responses ukontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20ukontrol.png?raw=true)
+![Blind SQL injection with conditional responses ukontrol](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20ukontrol.png?raw=true)
 
 administrator kullacınısının parolasını bulmadan önce parola uzunluğunu bulmalıyız. `' and (SELECT LENGTH(password) FROM users WHERE username = 'administrator') > number--` yükünü kullanarak parola uzunluğunu evet ,hayır sorusuyla bulmaya çalışıyotuz.
 Yükün inccelenmesi:
@@ -64,10 +64,10 @@ Yükün inccelenmesi:
 	- Sorgu 2 (`> 20` yazıldığında sayfada `Welcome back` yazısı görünmez): Parola 20 karakter uzunluğundadır.
 
 İlk başta yükteki number kısmına 10 yazıyoruz. Sayfayı gözlemlediğimizde `Welcome back`  yazısını sayfada görebiliyoruz. Bu parolanın 10 den büyük olduğunu gösterir. 
-![Blind SQL injection with conditional responses Lpassword](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20Lpassword.png?raw=true)
+![Blind SQL injection with conditional responses Lpassword](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20Lpassword.png?raw=true)
 
 Bu şekilde number sayısını arttıp azaltarak parolanın uzunluğunu bulmaya çalışıyoruz. En son tahmini bir sayı bulduğumuzda yükteki `>` işaretini `=` ile değiştirerek tahminimizden emin oluyoruz. Bu labda parola uzunluğu 20 olmatadır.
-![Blind SQL injection with conditional responses Lpassword2](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20Lpassword2.png?raw=true)
+![Blind SQL injection with conditional responses Lpassword2](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20Lpassword2.png?raw=true)
 
 Bul bilgileri kullanarak parolayı bulma için kullanacağımız yük `' AND (SELECT  SUBSTRING(password,number,1) FROM users WHERE username = 'administrator') > 'char`
 yükünü kullanarak paroladaki karakterleri tek tek bulmaya çalışılır. Yükün incelenmesi:
@@ -83,10 +83,10 @@ yükünü kullanarak paroladaki karakterleri tek tek bulmaya çalışılır. Yü
     -   Cevap: Doğru! İlk harfi bulduk: 'h'.
 
 Bu işlem 20 karakter uzunluğunda parola için uzun olacağından [link](python)'deki python kodunu kullanarak tüm karakterler bulunur. Kod yükteki number ve char kısımlarına belirli değerler girer(number 1-20 kadar sayılar, char qwertyuıopasdfghjklzxcvbnm123467890 karakterlerini tek tek) ve sayfaya yollar sayfanın verdiği cevabın boyutunu(byte) alır ve kayıt eder. Eğer gönderilen char belirlenen konumda ise sayfanın cevabı `Welcome back` yazısını içerir buda sayfanın boyutunu büyütür. En son alınan tüm yanıtları büyükten küçüğe doğru yollanan yük değerleri ile birlikte sıralar. Bu şekilde parolayı bulmuş oluruz.
-![Blind SQL injection with conditional responses pbulma](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20pbulma.png?raw=true)
+![Blind SQL injection with conditional responses pbulma](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20pbulma.png?raw=true)
 
 Son olarak bulduğumuz parolayı kullanarak labı çözüyoruz.
-![Blind SQL injection with conditional responses çözüm](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/images/Blind%20SQL%20injection%20with%20conditional%20responses%20%C3%A7%C3%B6z%C3%BCm.png?raw=true)
+![Blind SQL injection with conditional responses çözüm](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/SQL%20Injection/images/Blind%20SQL%20injection%20with%20conditional%20responses%20%C3%A7%C3%B6z%C3%BCm.png?raw=true)
 
 Linkden labı kendiniz çezebilirsiniz:</br>
 https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses
