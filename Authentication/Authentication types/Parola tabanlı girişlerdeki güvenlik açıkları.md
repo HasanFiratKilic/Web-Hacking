@@ -15,7 +15,7 @@ Saldırganlar bu giriş bilgilerini ele geçirmek için çeşitli yollara başvu
 
 -   **Kaba Kuvvet (Brute-Force) Saldırıları:** Saldırganların parola tahmin süreçlerini nasıl otomatize ettikleri.
     
--   🛡️ **Brute-Force Korumalarındaki Kusurlar:** Alınan güvenlik önlemlerinin neden ve nasıl yetersiz kalabileceği veya atlatılabileceği.
+-   **Brute-Force Korumalarındaki Kusurlar:** Alınan güvenlik önlemlerinin neden ve nasıl yetersiz kalabileceği veya atlatılabileceği.
     
 -   **HTTP Temel Kimlik Doğrulama (Basic Auth) Zafiyetleri:** Eski bir standart olan HTTP Basic Authentication mekanizmasının barındırdığı güvenlik açıkları.
 ## Kaba Kuvvet (Brute-Force) Saldırıları
@@ -29,7 +29,7 @@ Bu saldırıların temel özellikleri ve çalışma mantığı şu şekildedir:
 -   **Akıllı ve İsabetli Tahminler (Educated Guesses):** Brute-force saldırıları her zaman klavyede tamamen rastgele tuşlara basmak veya rastgele tahminler yapmak anlamına gelmez. Saldırganlar; temel mantığı, hedef uygulamanın yapısını veya herkese açık bilgileri kullanarak kaba kuvvet saldırılarını çok daha **isabetli tahminler** yapacak şekilde optimize edebilirler (fine-tuning). Bu yaklaşım, saldırıların başarı oranını ve verimliliğini ciddi şekilde artırır.
     
 
-> ⚠️ **Kritik Zayıflık** Kullanıcıların kimliğini doğrulamak için **tek yöntem** olarak parola tabanlı girişe dayanan (örneğin iki adımlı doğrulama / 2FA kullanmayan) web siteleri, sistemlerinde yeterli kaba kuvvet koruma mekanizmalarını uygulamadıkları takdirde bu saldırılara karşı son derece savunmasız kalırlar.
+>  **Kritik Zayıflık** Kullanıcıların kimliğini doğrulamak için **tek yöntem** olarak parola tabanlı girişe dayanan (örneğin iki adımlı doğrulama / 2FA kullanmayan) web siteleri, sistemlerinde yeterli kaba kuvvet koruma mekanizmalarını uygulamadıkları takdirde bu saldırılara karşı son derece savunmasız kalırlar.
 
 ## Kullanıcı Adlarını Tespit Etmek (Username Brute-Forcing & Enumeration)
 
