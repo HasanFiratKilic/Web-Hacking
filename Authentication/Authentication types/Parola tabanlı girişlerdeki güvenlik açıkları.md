@@ -215,3 +215,48 @@ Saldırgan, kullandığı listede her 4 hatalı denemeden sonra kendi hesabına 
  
 
 > [Bozuk kaba kuvvet koruması, IP engelleme lab](https://github.com/HasanFiratKilic/Web-Hacking/blob/main/Authentication/labs/Kaba%20kuvvet%20sald%C4%B1r%C4%B1s%C4%B1%20korumas%C4%B1%20bozuk%2C%20IP%20engelleme.md)
+
+## Hesap Kilitleme (Account Lockout) ve Zayıflıkları
+
+Kaba kuvvet saldırılarını önlemenin en bilindik yollarından biri, belirli bir başarısız giriş denemesi sınırına ulaşıldığında (örneğin 3 hatalı şifre) **hesabı kilitlemektir**.
+
+Hesap kilitleme, bir saldırganın _tek bir hedef hesaba_ (Örn: `admin` hesabı) odaklanıp binlerce şifre denemesini engellemekte çok başarılıdır. Ancak saldırganın amacı belirli bir hesabı değil de, **"sistemdeki herhangi bir hesabı"** ele geçirmekse, bu koruma tamamen yetersiz kalır.
+
+Saldırganlar bu kısıtlamayı aşmak için iki temel teknik kullanırlar:
+
+### 1. Parola Püskürtme (Password Spraying) ile Kilidi Aşmak
+
+Bu yöntemde saldırgan, tek bir hesaba binlerce şifre denemek yerine; **binlerce hesaba sadece birkaç tane en yaygın şifreyi dener.** **Örnek Senaryo:**
+
+-   **Sistemin Kuralı:** 3 hatalı denemeden sonra hesabı kilitle.
+    
+-   **Saldırganın Hazırlığı:** Sistemdeki 1000 adet geçerli kullanıcı adını tespit etti (Username Enumeration). Ayrıca insanların en sık kullandığı 2 adet parolayı seçti: `123456` ve `Qwert123!`. (Seçilen şifre sayısı, sistemin kilit sınırından az olmak zorundadır).
+    
+
+**Saldırı Akışı:**
+
+1.  Saldırgan elindeki 1000 kullanıcının hepsine `123456` şifresiyle giriş yapmayı dener. _(Şu an sistemdeki 1000 kullanıcının her birinde 1 adet hatalı giriş kaydı var. Hiçbir hesap kilitlenmedi!)_
+    
+2.  Ardından aynı 1000 kullanıcıya bu kez `Qwert123!` şifresini dener. _(Şu an herkesin 2 hatalı giriş kaydı var. Hâlâ hiçbir hesap kilitlenmedi!)_
+    
+
+**Sonuç:** Saldırgan, hesap kilitleme mekanizmasını hiç tetiklemeden 1000 hesap üzerinde kaba kuvvet saldırısı yapmış oldu. Bu 1000 kişiden sadece 1 tanesinin bile şifresi bu iki kelimeden biriyse, saldırgan o hesabı ele geçirmiş olur.
+
+### 2. Kimlik Bilgisi Doldurma (Credential Stuffing) Saldırıları
+
+Hesap kilitleme mekanizmasının çaresiz kaldığı bir diğer senaryo ise **Credential Stuffing** saldırılarıdır. Bu saldırı, insanların aynı e-posta ve şifre kombinasyonunu birden fazla sitede kullanması zafiyetine dayanır.
+
+**Örnek Senaryo:**
+
+-   Geçmişte popüler bir yemek sipariş sitesi hacklenir ve milyonlarca kişinin e-posta/şifre ikilisi karaborsaya düşer. (Örn: `fırat.kılıç@sirket.com` : `SamsunSpor1965!`)
+    
+-   Saldırgan bu devasa listeyi indirir.
+    
+-   Otomatik bir araç (örneğin Burp Suite Intruder) kullanarak, bu listedeki e-posta ve şifre ikililerini hedef web sitesinde denemeye başlar.
+    
+
+**Neden Kilitlenmez?** Saldırgan, hedef sitede `fırat.kılıç@sirket.com` hesabı için farklı şifreler denemez. Sadece sızdırılan listedeki `SamsunSpor1965!` şifresini **bir kez** dener. Eğer Fırat hedef sitede de aynı şifreyi kullanmışsa hesap ele geçirilir. Kullanmamışsa, saldırgan ikinci bir tahminde bulunmaz ve listedeki bir sonraki kişiye geçer.
+
+Her hesap için sadece **1 adet** deneme yapıldığından, "3 hatada kilitle" kuralı hiçbir zaman çalışmaz ve sistem bu devasa saldırıya karşı savunmasız kalır.
+
+ [Hesap kilidi aracılığıyla kullanıcı adı numaralandırması lab](Hesap%20kilidi%20arac%C4%B1l%C4%B1%C4%9F%C4%B1yla%20kullan%C4%B1c%C4%B1%20ad%C4%B1%20numaraland%C4%B1rmas%C4%B1)
